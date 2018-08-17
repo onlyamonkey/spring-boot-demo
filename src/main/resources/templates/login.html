@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:include="common::common" >
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/loginstyle/css/demo.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/loginstyle/css/style1.css}" />
+<style>
+    .form{background: rgba(255,255,255,0.2);width:400px;margin:120px auto;}
+    /*阴影*/
+    .fa{display: inline-block;top: 27px;left: 6px;position: relative;color: #ccc;}
+    input[type="text"],input[type="password"]{padding-left:26px;}
+    .form-title{
+        font-size: 50px;
+        margin-left: -90px;
+    }
+</style>
+<body>
+<ul class="cb-slideshow">
+    <li><span>Image 01</span><div></div></li>
+    <li><span>Image 02</span><div></div></li>
+    <li><span>Image 03</span><div></div></li>
+    <li><span>Image 04</span><div></div></li>
+    <li><span>Image 05</span><div></div></li>
+    <li><span>Image 06</span><div></div></li>
+</ul>
+<div class="container">
+    <div class="form row">
+        <div class="form-horizontal col-md-offset-3" id="login_form">
+            <h3 class="form-title">BD·GLASS</h3>
+            <div class="col-md-9">
+                <div class="form-group">
+                    <i class="fa fa-user fa-lg"></i>
+                    <input class="form-control required" type="text" placeholder="Username" id="username" name="username" autofocus="autofocus" maxlength="20"/>
+                </div>
+                <div class="form-group">
+                    <i class="fa fa-lock fa-lg"></i>
+                    <input class="form-control required" type="password" placeholder="Password" id="password" name="password" maxlength="8"/>
+                </div>
+
+                <div class="form-group col-md-offset-9">
+                    <button type="submit" class="btn btn-success pull-right" name="submit" onclick="login()">登录</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function login() {
+        var username = $("#username").val();
+        var password = $("#password").val();
+        $.ajax({
+            url:'/loginval',
+            type:'post',
+            data:{username:username,password:password},
+            success:function (result) {
+                if(result == 'success'){
+                    window.location.href="/index"
+                }else{
+
+                }
+            }
+        })
+    }
+
+</script>
+</body>
+</html>

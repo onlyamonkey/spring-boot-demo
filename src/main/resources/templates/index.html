@@ -11,47 +11,49 @@
 <link rel="stylesheet" th:href="@{/tree/assets/css/custom.css}">
 <script th:src="@{/tree/assets/js/jquery.mCustomScrollbar.concat.min.js}"></script>
 <script th:src="@{/tree/assets/js/custom.js}"></script>
+<style>
+    .item{
+        height:100vh;
+        background-color: #2b542c;
+    }
+    .embed-responsive{
+        height:100vh;
+    }
+</style>
+
 <body>
 <div class="page-wrapper">
+    <div class="embed-responsive">
+        <iframe class="embed-responsive-item" id="location" ></iframe>
+    </div>
+
     <nav id="sidebar" class="sidebar-wrapper">
         <div class="sidebar-content">
             <a href="#" id="toggle-sidebar"><i class="fa fa-bars"></i></a>
             <div class="sidebar-brand">
-                <a href="#">pro sidebar</a>
+                <a href="#">宝岛眼镜</a>
             </div>
             <div class="sidebar-header">
                 <div class="user-pic">
                     <img class="img-responsive img-rounded" th:src="@{/tree/assets/img/user.jpg}" alt="">
                 </div>
                 <div class="user-info">
-                    <span class="user-name">Jhon <strong>Smith</strong></span>
-                    <span class="user-role">Administrator</span>
+                    <span class="user-name"> <strong>董洁</strong></span>
+                    <span class="user-role">管理员</span>
                     <div class="user-status">
                         <a href="#"><span class="label label-success">Online</span></a>
                     </div>
                 </div>
             </div><!-- sidebar-header  -->
-          <!--  <div class="sidebar-search">
-                <div>
-                    <div class="input-group">
-                        <input type="text" class="form-control search-menu" placeholder="Search for...">
-                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                    </div>
-                </div>
-            </div>
-            -->
             <!-- sidebar-search  -->
             <div class="sidebar-menu">
                 <ul>
-                    <li class="header-menu"><span>Dropdown  menu</span></li>
+                    <li class="header-menu"><span>功能菜单</span></li>
                     <li class="sidebar-dropdown">
-                        <a  href="#" ><i class="fa fa-tv"></i><span>Menu 1</span><span class="label label-danger">New</span></a>
+                        <a  href="#" ><i class="fa fa-tv"></i><span>会员管理</span></a>
                         <div class="sidebar-submenu">
                             <ul>
-                                <li><a href="/login">submenu 1 <span class="label label-success">10</span></a> </li>
-                                <li><a href="#">submenu 2</a></li>
-                                <li><a href="#">submenu 3</a></li>
-                                <li><a href="#">submenu 4</a></li>
+                                <li><a class="menuitem" href="javascript:;" _href="/user">会员消费</a> </li>
                             </ul>
                         </div>
                     </li>
@@ -59,11 +61,16 @@
             </div><!-- sidebar-menu  -->
         </div><!-- sidebar-content  -->
     </nav><!-- sidebar-wrapper  -->
-    <main class="page-content">
-        <div class="container-fluid" id="content">
 
-        </div>
-    </main><!-- page-content" -->
 </div><!-- page-wrapper -->
+<script>
+    $(".menuitem").each(function (i) {
+        $(this).click(function (e) {
+            var _href =  $(this).attr("_href");
+            $("#location").attr("src",_href);
+            $("#toggle-sidebar").click();
+        })
+    })
+</script>
 </body>
 </html>
